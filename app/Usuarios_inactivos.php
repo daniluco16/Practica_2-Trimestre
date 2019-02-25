@@ -19,7 +19,7 @@ class Usuarios_inactivos extends Authenticatable
     protected  $table = 'usuarios_inactivo';
     
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','provider', 'provider_id'
     ];
 
     /**
