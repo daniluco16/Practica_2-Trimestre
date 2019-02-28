@@ -38,7 +38,7 @@ use AuthenticatesUsers;
         
         $user = Socialite::driver($provider)->stateless()->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
    
-//        $user->token;
+        $user->token;
         
         $userActive = User::where('provider_id',$user->id)->first(); // comprobar si existe el usuario y está activo
 
@@ -62,7 +62,8 @@ use AuthenticatesUsers;
                 'name' => $user->name,
                 'email' => $user->email,
                 'provider' => strtoupper($provider),
-                'provider_id' => $user->id
+                'provider_id' => $user->id,
+                'image_path' => $user->getAvatar(),
             ]);
             
             
@@ -71,5 +72,6 @@ use AuthenticatesUsers;
         }
 
     }
+
     
 }

@@ -28,7 +28,7 @@
         <div id="app" >
             @include('includes.header')
             
-            <main class="h-100 py-4 d-flex align-items-center">
+            <main class="h-100 py-4">
                 @yield('content')
 
             </main>

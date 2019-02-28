@@ -9,10 +9,10 @@
             <p class="alert alert-danger">{{Session::get('message')}}</p>
             @endif
             <div class="card">
-                <div class="card-header">{{__('auth.Login')}}
+                <div class="card-header"><strong>{{__('auth.Login')}}</strong>
 
                     <a href="{{ url('lang', ['es']) }}"><img src="https://image.flaticon.com/icons/svg/203/203059.svg" style="width: 50px;"></a>
-                    <a href="{{ url('lang', ['en']) }}"><img src="https://image.flaticon.com/icons/svg/202/202951.svg" style="width: 50px;"></a>
+                    <a href="{{ url('lang', ['en']) }}"><img src="https://image.flaticon.com/icons/svg/202/202839.svg" style="width: 50px;"></a>
                 </div>
 
                 <div class="card-body">
@@ -53,7 +53,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                            <label class="form-check-label" for="remember">
-                                        {{ __('auth.Recuerdame') }}
+                                               <strong>{{ __('auth.Recuerdame') }}</strong>
                                     </label>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
 
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('auth.¿Olvidaste tu contraseña?') }}
+                                    <strong>{{ __('auth.¿Olvidaste tu contraseña?') }}</strong>
                                 </a>
                                 @endif
                             </div>
