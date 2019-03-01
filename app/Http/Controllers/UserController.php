@@ -12,17 +12,24 @@ class UserController extends Controller
 {
     
     
-    public function listado() {
+    public function listado($ordenar = '', $campo = '',$search = '') {
         
-        $users = User::orderBy('rol', 'asc')->paginate(5);
-        
-//        $users_inac = Usuarios_inactivos::orderBy('created_at', 'asc')->paginate(3);
-        
+        if(!empty($search)){
+            
+            $users = User::where($campo,'LIKE','%'.$search.'%')
+                    ->orderBy($ordenar, 'desc')
+                    ->paginate(5);
+            
+        }else{
+            
+            $users = User::orderBy('rol', 'asc')->paginate(5);
+            
+        }
+                
         
         return view('listado', [
             
             'users' => $users,
-//            'users_inac' => $users_inac
         ]);
         
     }
@@ -46,6 +53,16 @@ class UserController extends Controller
         $user = \Auth::user();
         
         return view('perfil', ['user' => $user]);
+    }
+    
+    public function perfil_seleccionado($id) {
+        
+        $user = \Auth::user();
+        
+        $perfil = User::find($id);
+        
+        return redirect('perfil');
+        
     }
     
     public function borrar_activos($id) {

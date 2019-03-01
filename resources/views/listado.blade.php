@@ -9,30 +9,47 @@
         <div class="col-auto">
 
             <a href="{{route('listado_inactivos')}}" class="btn btn-info align-self-start">Ver inactivos</a>
-            <a href="" class="btn btn-danger align-self-start">Exportar a pdf</a>
+            <a href="{{route('generar')}}" class="btn btn-danger align-self-start">Exportar a pdf</a>
         </div>
 
     </div>
+    <form method="GET" action="{{route('listado')}}" id="buscador">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-auto mt-2">
+            <div class="form-group mt-2 mr-4">
+                <label>Ordenar por: </label>
+                <select class="form-control" id="ordenar">
+                    <option value="name">Nombre</option>
+                    <option value="surname">Apellidos</option>
+                    <option value="email">Email</option>
+                </select>
+            </div>
 
-            <input type="text" class="form-control" id="search" placeholder="Introduce el usuario.." >
+            <div class="form-group mt-2">
+                <label>Buscar por: </label>
+                <select class="form-control" id="campo">
+                    <option value="name">Nombre</option>
+                    <option value="surname">Apellidos</option>
+                    <option value="email">Email</option>
+                </select>
+            </div>
+
+            <div class="col-auto mt-4">
+
+                <input type="text" class="form-control" id="search">
+            </div>
+
+            <div class="form-group mt-4">
+
+                <input  type="submit" value="Buscar" class="btn btn-success mb-1"/>
+
+            </div> 
+
         </div>
 
-        <div class="form-group">
+    </form>
 
-            <button type="submit" class="form-control btn btn-primary">
-                <i class="fas fa-search"></i>Buscar 
-            </button>
-
-        </div> 
-
-
-
-
-    </div>
     <div class="d-flex justify-content-center">
 
         <table class="table table-hover table-dark w-75">
@@ -49,7 +66,7 @@
             <tbody class="text-center">
                 @foreach($users as $user)
 
-                @if(!Auth::user())
+                @if(Auth::user())
 
                 <tr>
                     <th class="align-middle">{{$user->nif}}</th>
@@ -58,7 +75,7 @@
                     <td class="align-middle">{{$user->email}}</td>
                     <td class="align-middle">{{$user->rol}}</td>
                     <td>
-                        <a href="" class="btn btn-primary font-weight-bold">Ver anuncio</a>
+                        <a href="{{route('perfil')}}" class="btn btn-primary font-weight-bold">Ver anuncio</a>
                         <a href="" class="btn btn-success font-weight-bold">Editar</a>
                         <a data-toggle="modal" data-target="#eliminar" href="#" class="btn btn-danger font-weight-bold">Borrar</a>
                     </td>

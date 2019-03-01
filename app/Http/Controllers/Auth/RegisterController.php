@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Rules\Captcha;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'unique:usuarios_inactivo'],
             'password' => ['required', 'string', 'regex:/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/', 'confirmed'],
+            'g-recaptcha-response' => new Captcha(),
         ]);
     }
 
@@ -73,7 +75,7 @@ class RegisterController extends Controller
             'nick' => $data['nick'],
             'github' => $data['github'],
             'departamento' => $data['departamento'],
-            'telefono_movil' => $data['telefono']
+            'telefono_movil' => $data['telefono'],
         ]);
     }
 }

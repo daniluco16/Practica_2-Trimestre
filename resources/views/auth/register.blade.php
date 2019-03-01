@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
+<!--{!! NoCaptcha::renderJs() !!}-->
+
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -121,8 +124,24 @@
                                 <input id="github" type="text" class="form-control" name="github">
                             </div>
                         </div>
-
-
+                        
+                        <div class="form-group row">
+                            
+                            <div class="col-md-6 offset-md-4">
+                                <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+                                
+                                @if($errors->has('g-recaptcha-response'))
+                                
+                                <span class="invalid-feedback" style="display: block">
+                                    
+                                    <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                                    
+                                </span>
+                                
+                                @endif
+                            </div>
+                            
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

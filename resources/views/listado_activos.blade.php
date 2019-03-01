@@ -10,6 +10,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Fecha creación</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <th scope="row" class="align-middle">{{$user_inac->name}}</th>
                     <td class="align-middle">{{$user_inac->surname}}</td>
                     <td class="align-middle">{{$user_inac->email}}</td>
+                    <td class="align-middle">{{$user_inac->created_at}}</td>
                     @if(Auth::user()->rol == 'Admin')
                     <td>
                         <a href="" class="btn btn-warning font-weight-bold">Activar</a>
