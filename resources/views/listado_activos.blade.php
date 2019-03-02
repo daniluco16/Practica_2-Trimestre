@@ -7,6 +7,7 @@
         <table class="table table-hover table-dark w-75">
             <thead class="text-center">
                 <tr>
+                    <th scope="col">NIF</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Email</th>
@@ -33,13 +34,14 @@
                 ?>
                 
                 <tr>
+                    <td class="align-middle">{{$user_inac->nif}}</td>
                     <th scope="row" class="align-middle">{{$user_inac->name}}</th>
                     <td class="align-middle">{{$user_inac->surname}}</td>
                     <td class="align-middle">{{$user_inac->email}}</td>
                     <td class="align-middle">{{$user_inac->created_at}}</td>
                     @if(Auth::user()->rol == 'Admin')
                     <td>
-                        <a href="" class="btn btn-warning font-weight-bold">Activar</a>
+                        <a href="{{route('activar', ['id' => $user_inac->id])}}" class="btn btn-warning font-weight-bold">Activar</a>
                         <a data-toggle="modal" href="#<?= $modal ?>" class="btn btn-danger font-weight-bold">Borrar</a>
                     </td>
                    @endif

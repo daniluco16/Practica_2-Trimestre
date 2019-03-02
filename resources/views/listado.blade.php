@@ -64,10 +64,23 @@
                 </tr>
             </thead>
             <tbody class="text-center">
+                
+                <?php 
+                $contador = 0;
+                
+                $modal = "";
+                
+                ?>
+                
                 @foreach($users as $user)
-
-                @if(Auth::user())
-
+                
+                 <?php 
+                $contador++;
+                
+                $modal = "md" . $contador;
+                
+                ?>
+                @if(Auth::User()->id != $user->id)
                 <tr>
                     <th class="align-middle">{{$user->nif}}</th>
                     <td class="align-middle">{{$user->name}}</td>
@@ -75,16 +88,16 @@
                     <td class="align-middle">{{$user->email}}</td>
                     <td class="align-middle">{{$user->rol}}</td>
                     <td>
-                        <a href="{{route('perfil')}}" class="btn btn-primary font-weight-bold">Ver anuncio</a>
-                        <a href="" class="btn btn-success font-weight-bold">Editar</a>
-                        <a data-toggle="modal" data-target="#eliminar" href="#" class="btn btn-danger font-weight-bold">Borrar</a>
+                        <a href="{{route('perfil', ['id' => $user->id])}}" class="btn btn-primary font-weight-bold">Ver anuncio</a>
+                        @if(Auth::User()->rol == 'Admin')<a href="{{route('ver_editar', ['id' => $user->id])}}" class="btn btn-success font-weight-bold">Editar</a>@endif
+                        @if(Auth::User()->rol == 'Admin')<a data-toggle="modal" data-target="#<?= $modal ?>" href="#" class="btn btn-danger font-weight-bold">Borrar</a>@endif
                     </td>
                 </tr>
                 @endif
 
 
                 <!-- Modal -->
-            <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="<?= $modal ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

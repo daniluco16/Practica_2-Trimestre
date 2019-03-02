@@ -5,11 +5,13 @@
 <div class="w-100 d-flex justify-content-center">
 
     <div class="card" style="width:400px">
-        <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image">
+        <img class="card-img-top" src="https://image.flaticon.com/icons/svg/236/236831.svg" alt="Card image">
+        
         <div class="card-body">
             <h4 class="card-title text-center">{{ $user->name . ' ' . $user->surname}}</h4>
             <p class="card-text text-center">{{ $user->rol . ' | | ' . ' ' . '  Teléfono de contacto:' . '   ' .$user->telefono_movil}}</p>
             <a data-toggle="modal" href="#modal" class="btn btn-primary d-flex justify-content-center">Ver más</a>
+            <a href="{{route('ver_editar', ['id' => $user->id])}}" class="btn btn-warning d-flex justify-content-center">Editar Perfil</a>
         </div>
     </div>
 

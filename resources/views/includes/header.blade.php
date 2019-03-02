@@ -34,11 +34,11 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         
-                        <a class="dropdown-item" href="{{ route('perfil') }}">
+                        <a class="dropdown-item" href="{{ route('perfil', ['id' => Auth::user()->id]) }}">
                             <i class="fas fa-user-circle"></i>&nbsp;{{ __('Perfil') }}
                         </a>
                                                
-                        <a class="dropdown-item" href="{{ route('logout') }}">
+                        <a class="dropdown-item" href="{{ route('bandeja_entrada') }}">
                             <i class="fas fa-inbox"></i>&nbsp;{{ __('Bandeja de entrada') }}
                         </a>
                         
