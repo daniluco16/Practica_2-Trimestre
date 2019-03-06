@@ -31,24 +31,26 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function Ciclos() {
+   
+    
+    public function ciclos() {
         
-        return $this->hasMany('App/Ciclo');
-        
-    }
-    public function Mensajes() {
-        
-        return $this->hasMany('App/Mensaje');
+        return $this->hasMany('App\Ciclo');
         
     }
-    public function Ofertas() {
+    public function mensajes() {
         
-        return $this->hasMany('App/Oferta');
+        return $this->hasMany('App\Mensaje');
         
     }
-    public function Curriculum() {
+    public function ofertas() {
         
-        return $this->belongsTo("App/Curriculum");
+        return $this->hasMany('App\Oferta');
+        
+    }
+    public function curriculum() {
+        
+        return $this->belongsTo("App\Curriculum");
         
     }
 }

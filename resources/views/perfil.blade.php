@@ -5,13 +5,25 @@
 <div class="w-100 d-flex justify-content-center">
 
     <div class="card" style="width:400px">
-        <img class="card-img-top" src="https://image.flaticon.com/icons/svg/236/236831.svg" alt="Card image">
-        
+
+        @if($user->image_path == null)
+        <img class="card-img-top" src="{{ asset('img/man.png') }}" alt="da">
+        @else
+        <img class="card-img-top" src="{{route('ver_imagen', ['filename' => $user->image_path]) }}" alt="Card image">
+        @endif
         <div class="card-body">
             <h4 class="card-title text-center">{{ $user->name . ' ' . $user->surname}}</h4>
             <p class="card-text text-center">{{ $user->rol . ' | | ' . ' ' . '  Teléfono de contacto:' . '   ' .$user->telefono_movil}}</p>
             <a data-toggle="modal" href="#modal" class="btn btn-primary d-flex justify-content-center">Ver más</a>
+
+            @if(Auth::user()->rol == 'Admin' || Auth::user()->id == $user->id)
             <a href="{{route('ver_editar', ['id' => $user->id])}}" class="btn btn-warning d-flex justify-content-center">Editar Perfil</a>
+
+            <a href="{{route('generar_perfil', ['id' => $user->id])}}" class="btn btn-danger d-flex justify-content-center">Exportar a pdf</a>
+
+            @endif
+
+
         </div>
     </div>
 
@@ -37,6 +49,14 @@
                     <hr>
                     <h5>Fecha de creación de la cuenta:  {{$user->created_at}}</h5>
 
+                    <hr>
+                    <h3>Formaciones Cursadas</h3>
+
+                    @foreach(explode(';', $user->formacion) as $formacion)
+                    
+                    <p>{{$formacion}}</p>
+                    
+                    @endforeach
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

@@ -22,7 +22,7 @@
 
                             <div class="text-center">
 
-                                <a href="{{ route('listado_activos')}}"><img src="https://image.flaticon.com/icons/svg/1465/1465502.svg" width="100" height="100"></a>
+                                @if(Auth::user()->rol == 'Admin')<a href="{{ route('listado_activos')}}">@endif<img src="https://image.flaticon.com/icons/svg/1465/1465502.svg" width="100" height="100"></a>
                                 <h2 class="mt-3">Administrar</h2>
 
                             </div>

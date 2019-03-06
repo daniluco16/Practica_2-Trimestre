@@ -1,39 +1,24 @@
 @extends('layouts.app')
 
+
 @section('content')
+
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div class="card-header">{{ __('Alta de Usuarios') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('darAlta')}}">
                         @csrf
-                        <input type="hidden" value="{{$user->id}}" name="id" id="id">
+
                         <div class="form-group row">
                             <label for="nif" class="col-md-4 col-form-label text-md-right">{{ __('NIF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nif" type="text" class="form-control" name="nif" value="{{$user->nif}}" required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            @if($user->image_path)
-
-                            <img src="{{ route('ver_imagen', ['filename' => $user->image_path]) }}">
-
-                            @else
-                            <img src="https://image.flaticon.com/icons/svg/236/236831.svg">
-
-                            @endif
-                            <div class="col-md-6">
-
-                                <input type="file" id="imagen" name="imagen" class="form-control p-0 mt-2" style="margin-left: 240px">
-
+                                <input id="nif" type="text" class="form-control" name="nif" required>
                             </div>
                         </div>
 
@@ -41,7 +26,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -55,7 +40,7 @@
                             <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                             <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control" name="surname" value="{{$user->surname}}" required>
+                                <input id="surname" type="text" class="form-control" name="surname" required>
                             </div>
                         </div>
 
@@ -63,7 +48,7 @@
                             <label for="nick" class="col-md-4 col-form-label text-md-right">{{ __('Nick') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nick" type="text" class="form-control" name="nick" value="{{$user->nick}}" required>
+                                <input id="nick" type="text" class="form-control" name="nick" required>
                             </div>
                         </div>
 
@@ -71,7 +56,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -104,24 +89,27 @@
                             </div>
                         </div>
 
+
+
+
                         <div class="form-group row">
                             <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono Movil') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefono_movil" type="text" class="form-control" name="telefono_movil" value="{{$user->telefono_movil}}" required>
+                                <input id="telefono_movil" type="text" class="form-control" name="telefono_movil" required>
                             </div>
                         </div>
 
-                        @if(Auth::User()->rol == 'Admin')
                         <div class="form-group row">
-                            <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
-
+                            <label for="rol" class="col-md-4 col-form-label text-md-right">{{__('Rol')}}</label>
                             <div class="col-md-6">
-                                <input id="rol" type="text" class="form-control" name="rol" value="{{$user->rol}}" required>
-                            </div>
+                                <select class="form-control" id="rol" name="rol">
+                                    <option>Alumno</option>
+                                    <option>Admin</option>
+                                </select>
+                            </div>                       
                         </div>
-                        @endif
-
+                        
                         <div class="form-group row">
                             <label for="departamento" class="col-md-4 col-form-label text-md-right">{{__('Departamento')}}</label>
                             <div class="col-md-6">
@@ -135,7 +123,7 @@
                             <label for="blog" class="col-md-4 col-form-label text-md-right">{{ __('Blog') }}</label>
 
                             <div class="col-md-6">
-                                <input id="blog" type="text" class="form-control" name="blog" value="{{$user->blog}}">
+                                <input id="blog" type="text" class="form-control" name="blog">
                             </div>
                         </div>
 
@@ -143,14 +131,15 @@
                             <label for="github" class="col-md-4 col-form-label text-md-right">{{ __('Github') }}</label>
 
                             <div class="col-md-6">
-                                <input id="github" type="text" class="form-control" name="github" value="{{$user->github}}">
+                                <input id="github" type="text" class="form-control" name="github">
                             </div>
                         </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Actualizar') }}
+                                    {{ __('Dar de alta') }}
                                 </button>
 
                             </div>
@@ -163,6 +152,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-

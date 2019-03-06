@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ciclo extends Model
 {
-    public function Usuarios() {
+    protected  $table = 'cf';
+    
+    public function users() {
         
-        return $this->hasMany('App/User');
+        return $this->hasMany('App\User');
         
     }
     
-    public function FamiliaProfesional() {
+    public function familia() {
         
-        return $this->belongsTo('App/Familia', 'FP_idFP');
+        return $this->belongsTo('App\Familia', 'FP_id');
         
     }
 }

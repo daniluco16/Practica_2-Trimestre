@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Familia extends Model
 {
-    public function Ciclos() {
+    protected  $table = 'fp';
+    
+    public function ciclos() {
         
-        return $this->hasMany('App/Ciclo');
+        return $this->hasMany('App\Ciclo');
         
     }
+  
 }

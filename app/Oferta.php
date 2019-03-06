@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Oferta extends Model
 {
-    public function Usuario() {
+    protected  $table = 'ofertas';
+    
+    public function user() {
         
-        return $this->belongsTo('App/User', 'users_id');
+        return $this->belongsTo('App\User', 'users_id');
         
     }
+    
+    protected $fillable = [
+       'nombre_empresa','telefono_empresa','email_empresa',
+        'descripcion', 'direccion_empresa','users_id'
+    ];
 }

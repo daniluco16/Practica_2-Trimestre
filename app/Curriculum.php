@@ -8,7 +8,7 @@ class Curriculum extends Model
 {
     public function Usuario() {
         
-        return $this->belongsTo('App/User', 'users_id');
+        return $this->belongsTo('App\User', 'users_id');
         
     }
 }
