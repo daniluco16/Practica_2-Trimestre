@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curriculum extends Model
 {
-    public function Usuario() {
+    protected $table = 'curriculum';
+    
+    public function user() {
         
         return $this->belongsTo('App\User', 'users_id');
         

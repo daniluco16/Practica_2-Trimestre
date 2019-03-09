@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp/www/antiguos-alumnos/routes/web.php</file>
-            <file>file:/C:/wamp/www/antiguos-alumnos/resources/views/addFormacion.blade.php</file>
-            <file>file:/C:/wamp/www/antiguos-alumnos/app/Http/Controllers/OfertaController.php</file>
-            <file>file:/C:/wamp/www/antiguos-alumnos/app/Http/Controllers/MensajeController.php</file>
-            <file>file:/C:/wamp/www/antiguos-alumnos/app/User.php</file>
+            <file>file:/C:/wamp/www/antiguos-alumnos/resources/views/listado.blade.php</file>
+            <file>file:/C:/wamp/www/antiguos-alumnos/resources/views/listado_activos.blade.php</file>
+            <file>file:/C:/wamp/www/antiguos-alumnos/resources/views/editar.blade.php</file>
             <file>file:/C:/wamp/www/antiguos-alumnos/app/Http/Controllers/UserController.php</file>
-            <file>file:/C:/wamp/www/antiguos-alumnos/resources/views/perfil.blade.php</file>
         </group>
     </open-files>
 </project-private>

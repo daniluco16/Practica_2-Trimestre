@@ -29,7 +29,7 @@
                 @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        @if(Auth::user()->image_path != 'null')                        
+                        @if(Auth::user()->image_path != null)                        
                         <img src="{{ route('ver_imagen', ['filename' => Auth::user()->image_path])  }}" width="40" height="40">&nbsp;<strong>{{ Auth::user()->name }}</strong> <span class="caret"></span>
                         @else
                         <img src="{{ asset('img/man.png') }}" width="40" height="40">&nbsp;<strong>{{ Auth::user()->name }}</strong> <span class="caret"></span>
@@ -54,12 +54,20 @@
                             <i class="fas fa-building"></i>&nbsp;{{ __('Crear oferta') }}
                         </a>
 
+                        <a class="dropdown-item" href="">
+                            <i class="fas fa-cogs"></i>&nbsp;{{ __('Logs') }}
+                        </a>
+
                         @endif
 
                         @if(Auth::user()->rol == 'Alumno')
 
                         <a class="dropdown-item" href="{{ route('formacion') }}">
                             <i class="fas fa-award"></i>&nbsp;{{ __('Añadir formación') }}
+                        </a>
+
+                        <a class="dropdown-item" href="{{ route('listado_ofertas') }}">
+                            <i class="fas fa-briefcase"></i>&nbsp;{{ __('Ver Ofertas') }}
                         </a>
 
                         @endif

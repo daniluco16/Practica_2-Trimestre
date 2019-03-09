@@ -47,7 +47,7 @@
                                         <td>
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input type="checkbox" class="d-flex justify-content-center" name="ofertas[]" id="<?= $contador ?>" value="{{$user->email}}">
+                                                    <input type="checkbox" class="d-flex justify-content-center" name="ofertas[]" id="<?= $contador ?>" value="{{$user->id}}">
                                                 </label>
                                             </div>
                                         </td>
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="nif" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono de la Empresa') }}</label>
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono de la Empresa') }}</label>
 
                             <div class="col-md-6">
                                 <input id="telefono" type="text" class="form-control" name="telefono" required>
@@ -88,7 +88,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email de la Empresa') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" required>
+                                <input id="email" type="email" class="form-control" name="email" required>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                             <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripción de la Empresa') }}</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="5" id="descripcion"></textarea>
+                                <textarea class="form-control" rows="5" id="descripcion" name="descripcion"></textarea>
                             </div>
                         </div>
 

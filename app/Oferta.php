@@ -8,6 +8,8 @@ class Oferta extends Model
 {
     protected  $table = 'ofertas';
     
+    protected $primaryKey = 'idofertas';
+    
     public function user() {
         
         return $this->belongsTo('App\User', 'users_id');

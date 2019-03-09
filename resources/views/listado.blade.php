@@ -8,7 +8,7 @@
 
         <div class="col-auto">
 
-            <a href="{{route('listado_inactivos')}}" class="btn btn-info align-self-start">Ver inactivos</a>
+            @if(Auth::User()->rol == "Admin")<a href="{{route('listado_inactivos')}}" class="btn btn-info align-self-start">Ver inactivos</a>@endif
             <a href="{{route('generar')}}" class="btn btn-danger align-self-start">Exportar a pdf</a>
         </div>
 
@@ -124,7 +124,6 @@
         </table>
 
     </div>
-
 </div>
 
 @endsection

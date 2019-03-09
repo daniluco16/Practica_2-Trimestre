@@ -9,7 +9,6 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        
 
 
 
@@ -41,9 +40,11 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
-        
+        @include('ckfinder::setup')
+        <script src="https://cdn.ckeditor.com/4.11.3/full/ckeditor.js"></script>
+
         @yield('js')
-        
+
         @include('includes.footer')
 
     </body>

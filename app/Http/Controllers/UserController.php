@@ -13,7 +13,8 @@ use Illuminate\Http\Response;
 use App\Mail\Contacto;
 use App\Familia;
 use App\Ciclo;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use App\Curriculum;
 
 class UserController extends Controller {
 
@@ -326,15 +327,95 @@ class UserController extends Controller {
 
         $ciclo = $request->input('ciclo');
 
-        $formacion = $ciclo . ' ' . $nombreFamilia . ';';
+        $formacion = $ciclo . ' ' . '(' . $nombreFamilia . ')' . ';';
+
 
         $user->formacion .= $formacion;
+
+//        $user->save();
+
 
         \DB::table('users')
                 ->where('id', $user->id)
                 ->update(['formacion' => $formacion]);
 
+
         return redirect()->route('home');
+    }
+
+    public function opcionesCurriculum() {
+
+        $user = Auth::user();
+
+        return view('curriculum', [
+            'user' => $user
+        ]);
+    }
+
+
+    public function addCurriculum(Request $request) {
+
+        $nuevo_curriculum = new Curriculum();
+
+        $user_id = Auth::user()->id;
+
+        if (Curriculum::where('users_id', Auth::user()->id)->count()) {
+
+            return view('home');
+        } else {
+            $contenido = $request->input('contenido');
+
+            $nuevo_curriculum->contenido = $contenido;
+
+            $nuevo_curriculum->users_id = $user_id;
+
+
+            $nuevo_curriculum->save();
+
+            return view('home');
+        }
+    }
+
+    public function verCurriculum($id) {
+
+        $curriculum = Curriculum::where('users_id', $id)->first();
+
+        return view('verCurriculum', [
+            'curriculum' => $curriculum
+        ]);
+    }
+
+    public function eliminarCurriculum($id) {
+
+
+        $curriculum = Curriculum::find($id);
+
+        $curriculum->delete();
+
+
+        return view('home');
+    }
+
+    public function modCurriculum() {
+
+        $curriculum = Curriculum::where('users_id', Auth::user()->id)->first();
+
+        return view('editarCurriculum', ['curriculum' => $curriculum]);
+    }
+
+    public function updateCurriculum(Request $request) {
+
+        $nuevo_curriculum = $request->input('contenido');
+
+
+        $curriculum = Curriculum::where('users_id', Auth::user()->id)->first();
+
+
+        $curriculum->contenido = $nuevo_curriculum;
+
+        $curriculum->update();
+
+        return view('home');
     }
 
 }

@@ -6,18 +6,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
-
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    
-    
+
     protected $fillable = [
        'nif','rol','name','surname', 'email','nick','telefono_movil','departamento','blog','github', 'password','provider', 'provider_id', 'image_path'
     ];
@@ -50,7 +49,7 @@ class User extends Authenticatable
     }
     public function curriculum() {
         
-        return $this->belongsTo("App\Curriculum");
+        return $this->hasOne("App\Curriculum" , "users_id");
         
     }
 }

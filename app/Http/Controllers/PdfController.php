@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Curriculum;
 use Illuminate\Http\Request;
 use Spipu\Html2Pdf\Html2Pdf;
 
@@ -65,6 +66,19 @@ class PdfController extends Controller {
         $html2pdf->writeHTML($html);
 
         $html2pdf->output('Perfil.pdf');
+    }
+    
+    public function generar_pdf_curriculum($id) {
+        
+        $html2pdf = new Html2Pdf();
+        
+        $curriculum = Curriculum::find($id);
+        
+        $html2pdf->writeHTML($curriculum->contenido);
+        
+        $html2pdf->output('Curriculum_Vitae.pdf');
+        
+        
     }
 
 }

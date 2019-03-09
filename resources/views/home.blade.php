@@ -34,7 +34,7 @@
 
                             <div class="text-center">
 
-                                <a href=""><img src="https://image.flaticon.com/icons/svg/1470/1470920.svg" class="ml-4" width="100" height="100"></a>
+                                @if(Auth::user()->rol == 'Alumno')<a href="{{route('opcionesCurriculum')}}">@endif<img src="https://image.flaticon.com/icons/svg/1470/1470920.svg" class="ml-4" width="100" height="100"></a>
                                 <h2 class="mt-3">Curriculum</h2>
 
                             </div>
